@@ -21,7 +21,7 @@ You need to install NuGet Extensions first.
 7. If you committed the offer then you will redirect to second page Page2.aspx. Now you can select one of your calendars of your google account.
 8. You will be directed to third page Page3.aspx when you selected one of calendars. At this page you can view table of your calendar events.
 
-### Для русских пользователей
+### Русским по-русски
 
 1. Запустите Visual Studio и установите расширение NuGet.
 2. Выполните Pull или скопируйте файлы из ветки гита в папку с проектом.

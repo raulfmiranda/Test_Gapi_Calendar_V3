@@ -46,8 +46,8 @@ namespace GAPIs_Calendar_v3
 
             CalendarEvents = result as List<Event>;
 
-            AccountNameLabel.InnerText = "Пользователь: " + AccountName;
-            CalendarDescriptionLabel.InnerText = string.Format("Календарь: {0} ({1} событий)", CalendarEntry.Summary, CalendarEvents.Count);
+            AccountNameLabel.InnerText = "Account Name: " + AccountName;
+            CalendarDescriptionLabel.InnerText = string.Format("Selecated calendar: {0} ({1} events)", CalendarEntry.Summary, CalendarEvents.Count);
 
             EventsTableIndex = 0;
             EventsTableRepeater.DataSource = CalendarEvents;

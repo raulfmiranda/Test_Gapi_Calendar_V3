@@ -28,7 +28,7 @@ namespace GAPIs_Calendar_v3
                 Response.Redirect("Page1.aspx", true);
             }
 
-            AccountNameLabel.InnerText = "Пользователь: " + AccountName;
+            AccountNameLabel.InnerText = "Account Name: " + AccountName;
         }
 
         protected override void OnPreRender(EventArgs e)
@@ -45,7 +45,7 @@ namespace GAPIs_Calendar_v3
             {
                 AccountCalendarsList.Items.Clear();
 
-                AccountCalendarsList.Items.Add(new ListItem("Выберите календарь"));
+                AccountCalendarsList.Items.Add(new ListItem("Choose calendar"));
 
                 var calList = result as CalendarList;
 

@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Add_Code\CalendarIntegrator\CalExceptions.cs" />
+    <Compile Include="Add_Code\CalendarIntegrator\DataBaseDataStore.cs" />
     <Compile Include="Add_Code\CalendarIntegrator\ICalIntegrator.cs" />
     <Compile Include="Add_Code\GApisCalV3Integrator\GooCalIntegrator.cs" />
     <Compile Include="Add_Code\GApisCalV3Integrator\GooCalV3Integrator.cs" />

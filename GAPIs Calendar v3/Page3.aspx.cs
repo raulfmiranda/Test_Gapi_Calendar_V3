@@ -22,7 +22,7 @@ namespace GAPIs_Calendar_v3
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            AccountName = Session["GooCalAccountName"] as string;
+            AccountName = Session["GapiUserId"] as string;
             Integrator = Session["GooCalIntegrator"] as GooCalIntegrator;
             var selectedCalendarId = Session["SelectedCalendarId"] as string;
 

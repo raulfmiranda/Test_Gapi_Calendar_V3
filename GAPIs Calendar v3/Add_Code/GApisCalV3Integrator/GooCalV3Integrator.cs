@@ -40,16 +40,20 @@ namespace GAPIs_Calendar_v3.Add_Code.GApisCalV3Integrator
 
                 if (code != null)
                 {
-                    var token = CodeFlow.ExchangeCodeForTokenAsync(accountName, code, uri.Substring(0, uri.IndexOf("?")), CancellationToken.None).Result;
-                    var oauthState = AuthWebUtility.ExtracRedirectFromState(CodeFlow.DataStore, accountName, Request["state"]).Result;
-                    return oauthState;
+                    string redirectUri = uri.Substring(0, uri.IndexOf("?"));
+                    var token = CodeFlow.ExchangeCodeForTokenAsync(accountName, code, redirectUri, CancellationToken.None).Result;
+                    string state = Request["state"];
+                    var result = AuthWebUtility.ExtracRedirectFromState(CodeFlow.DataStore, accountName, state);
+                    return result;
                 }
                 else
                 {
-                    var result = new AuthorizationCodeWebApp(CodeFlow, uri, uri).AuthorizeAsync(accountName, CancellationToken.None).Result;
+                    string redirectUri = uri;
+                    string state = "oauth_";// Guid.NewGuid().ToString("N");
+                    var result = new AuthorizationCodeWebApp(CodeFlow, redirectUri, state).AuthorizeAsync(accountName, CancellationToken.None).Result;
                     if (result.RedirectUri != null)
                     {
-                        return result.RedirectUri;
+                        return result;
                     }
                     else
                     {
@@ -59,6 +63,7 @@ namespace GAPIs_Calendar_v3.Add_Code.GApisCalV3Integrator
                             ApplicationName = APPLICATION_NAME
                         });
                         // alright
+                        return "OK";
                     }
                 }
             }

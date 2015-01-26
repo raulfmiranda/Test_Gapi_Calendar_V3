@@ -36,82 +36,41 @@ namespace GAPIs_Calendar_v3
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // главное условие, должны были указаны A и B
-            /*if (Request["a"] == null || Request["b"] == null)
-                Response.Redirect(
-                    string.Format("?a={0}&b={1}", Request["a"] ?? "1", Request["b"] ?? "2"));*/
+            var newUserId = (IsPostBack && !string.IsNullOrEmpty(AccountNameInput.Text)) ? AccountNameInput.Text : null;
+            var code = Request["code"];
+            var error = Request["error"];
+            var action = Request["action"];
 
-            if (IsPostBack)
+            if (newUserId != null)
             {
-                // если пришла команда для синхронизации
-                if (!string.IsNullOrEmpty(AccountNameInput.Text))
-                {
-                    Session["GapiUserId"] = AccountNameInput.Text;
-
-                    GooCalIntegrator integra = new GooCalV3Integrator();
-                    var result = integra.Authorize(Request, AccountNameInput.Text);
-                    // проверяю обработку
-                    if (result is AuthorizationCodeWebApp.AuthResult)
-                    {
-                        var authResult = result as AuthorizationCodeWebApp.AuthResult;
-                        // нужно выполнить переход на это url
-                        Response.Redirect(authResult.RedirectUri);
-                    }
-                    else if (result is string && (result as string) == "OK")
-                    {
-                        // все ок, пользователь авторизовался, выполняется переход к странице с выбором календаря
-                        Session["GooCalIntegrator"] = integra;
-                        Response.Redirect("Page2.aspx");
-                    }
-                    else if (result is Task<string>)
-                    {
-                        var task = result as Task<string>;
-                    }
-                    else if (result is UserRejectException)
-                    {
-                        // пользователь отвергнул приглашение
-                        RenderException(new Exception("Пользователь отвергнул приглашение", result as UserRejectException));
-                    }
-                    else if (result is Exception)
-                    {
-                        // произошла другая ошибка при обращении к сервису Google Api
-                        RenderException(result as Exception);
-                    }
-                    else
-                    {
-                        // случилось непредвиденное
-                        RenderException(new Exception("Случилось непредвиденное", new Exception("GooCalIntegrator.Authorize вернул другой тип результата")));
-                    }
-                }
+                Session["GapiUserId"] = newUserId;
             }
 
-            string accountName = Session["GapiUserId"] as string;
-
-            bool accDef = !string.IsNullOrEmpty(accountName);
-
-            InputAccountNamePanel.Visible = !accDef;
-            WaitingPanel.Visible = accDef;
-
-            if (accDef)
+            if (newUserId != null || code != null || error != null || action != null)
             {
                 GooCalIntegrator integra = new GooCalV3Integrator();
-                var result = integra.Authorize(Request, accountName);
+                var result = integra.Authorize(Request, Session["GapiUserId"] as string);
 
-                if (result == null)
+                // проверяю обработку
+                if (result is AuthorizationCodeWebApp.AuthResult)
                 {
-                    // Alright
-                    Session["GapiUserId"] = integra;
+                    var authResult = result as AuthorizationCodeWebApp.AuthResult;
+                    // нужно выполнить переход на этот url
+                    Response.Redirect(authResult.RedirectUri);
+                }
+                else if (result is string && (result as string) == "OK")
+                {
+                    // все ок, пользователь авторизовался
+                    // запоминаю объект интегратора
+                    Session["GooCalIntegrator"] = integra;
+                    // перехожу на следующую страницу
                     Response.Redirect("Page2.aspx");
                 }
                 else if (result is Task<string>)
                 {
-                    var task = result as Task<string>;
-                    //Session["task"] 
-                }
-                else if (result is string)
-                {
-                    // вернулась строка, это значит нужно выполнить переход на это url
-                    Response.Redirect(result as string);
+                    //var task = result as Task<string>;
+                    // авторизация прошла, нужно сейчас просто обновить страницу и снова авторизоваться
+                    Response.Redirect(Request.Url.AbsolutePath + "?action=check");
                 }
                 else if (result is UserRejectException)
                 {
@@ -128,17 +87,6 @@ namespace GAPIs_Calendar_v3
                     // случилось непредвиденное
                     RenderException(new Exception("Случилось непредвиденное", new Exception("GooCalIntegrator.Authorize вернул другой тип результата")));
                 }
-            }
-
-            // в случае ошибки, оставляю только ошибку
-            if (ErrorPan.Controls.Count > 0)
-            {
-                InputAccountNamePanel.Visible = false;
-                WaitingPanel.Visible = false;
-
-                var panel = new Panel();
-                panel.Controls.Add(new HyperLink() { NavigateUrl = "Page1.aspx", Text = "вернуться" });
-                ErrorPan.Controls.Add(panel);
             }
         }
 

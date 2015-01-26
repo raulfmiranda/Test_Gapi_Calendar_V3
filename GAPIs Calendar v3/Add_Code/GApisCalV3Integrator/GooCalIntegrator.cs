@@ -33,8 +33,9 @@ namespace GAPIs_Calendar_v3.Add_Code.GApisCalV3Integrator
                 ClientSecret = CLIENT_SECRET
             },
             Scopes = new[] { CalendarService.Scope.Calendar },
+
             //DataStore = new FileDataStore(GAPICAL_STORAGE)
-            DataStore = new DataBaseDataStore()
+            DataStore = new MyFileDataStore(GAPICAL_STORAGE),
         });
 
         protected CalendarService CalendarService;

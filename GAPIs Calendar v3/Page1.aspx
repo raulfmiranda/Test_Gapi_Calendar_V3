@@ -12,9 +12,6 @@
         Enter Account Name
         <asp:TextBox runat="server" ID="AccountNameInput" TextMode="SingleLine" />
     </div>
-    <div runat="server" id="WaitingPanel">
-        Authorization. Wait...
-    </div>
     </form>
 </body>
 </html>

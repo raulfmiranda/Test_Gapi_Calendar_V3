@@ -49,7 +49,7 @@ namespace GAPIs_Calendar_v3.Add_Code.GApisCalV3Integrator
                 else
                 {
                     string redirectUri = uri;
-                    string state = "oauth_";// Guid.NewGuid().ToString("N");
+                    string state = "ostate_";// Guid.NewGuid().ToString("N");
                     var result = new AuthorizationCodeWebApp(CodeFlow, redirectUri, state).AuthorizeAsync(accountName, CancellationToken.None).Result;
                     if (result.RedirectUri != null)
                     {

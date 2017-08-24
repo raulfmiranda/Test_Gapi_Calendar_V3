@@ -17,7 +17,6 @@ using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Web;
 using GAPIs_Calendar_v3.Add_Code.CalendarIntegrator;
 using System.Threading.Tasks;
-using Google.Apis.Auth.OAuth2.Web;
 
 namespace GAPIs_Calendar_v3
 {
@@ -36,7 +35,7 @@ namespace GAPIs_Calendar_v3
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var newUserId = (IsPostBack && !string.IsNullOrEmpty(AccountNameInput.Text)) ? AccountNameInput.Text : null;
+            var newUserId = (IsPostBack && !string.IsNullOrEmpty(txtAccountName.Text)) ? txtAccountName.Text : null;
             var code = Request["code"];
             var error = Request["error"];
             var action = Request["action"];
@@ -97,6 +96,11 @@ namespace GAPIs_Calendar_v3
                 ErrorPan.Controls.Add(new HtmlGenericControl() { InnerText = "• " + ex.Message });
                 ex = ex.InnerException;
             }
+        }
+
+        protected void AccountNameInput_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

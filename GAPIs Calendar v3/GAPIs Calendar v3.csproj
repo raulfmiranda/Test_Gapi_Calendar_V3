@@ -24,6 +24,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -129,6 +130,7 @@
     <Content Include="Page1.aspx" />
     <Content Include="Page2.aspx" />
     <Content Include="Page3.aspx" />
+    <Content Include="Page4InserirEvento.aspx" />
     <Content Include="Redirect.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -167,6 +169,13 @@
     </Compile>
     <Compile Include="Page3.aspx.designer.cs">
       <DependentUpon>Page3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page4InserirEvento.aspx.cs">
+      <DependentUpon>Page4InserirEvento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page4InserirEvento.aspx.designer.cs">
+      <DependentUpon>Page4InserirEvento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redirect.aspx.cs">

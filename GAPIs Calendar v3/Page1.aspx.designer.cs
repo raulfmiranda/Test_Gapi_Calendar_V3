@@ -40,12 +40,12 @@ namespace GAPIs_Calendar_v3 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl InputAccountNamePanel;
         
         /// <summary>
-        /// AccountNameInput control.
+        /// txtAccountName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AccountNameInput;
+        protected global::System.Web.UI.WebControls.TextBox txtAccountName;
     }
 }

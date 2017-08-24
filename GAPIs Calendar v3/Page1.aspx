@@ -10,7 +10,7 @@
     <div runat="server" id="ErrorPan" style="background: yellow; color: red"/>
     <div runat="server" id="InputAccountNamePanel">
         Enter Account Name
-        <asp:TextBox runat="server" ID="AccountNameInput" TextMode="SingleLine" />
+        <asp:TextBox runat="server" ID="txtAccountName" TextMode="SingleLine" OnTextChanged="AccountNameInput_TextChanged" />
     </div>
     </form>
 </body>

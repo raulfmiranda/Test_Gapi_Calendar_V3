@@ -10,7 +10,7 @@
 namespace GAPIs_Calendar_v3 {
     
     
-    public partial class Page3 {
+    public partial class Page4InserirEvento {
         
         /// <summary>
         /// form1 control.
@@ -40,21 +40,39 @@ namespace GAPIs_Calendar_v3 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AccountNameLabel;
         
         /// <summary>
-        /// CalendarDescriptionLabel control.
+        /// InputEventTitlePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CalendarDescriptionLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl InputEventTitlePanel;
         
         /// <summary>
-        /// EventsTableRepeater control.
+        /// EventTitleInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater EventsTableRepeater;
+        protected global::System.Web.UI.WebControls.TextBox EventTitleInput;
+        
+        /// <summary>
+        /// btInserirEvento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btInserirEvento;
+        
+        /// <summary>
+        /// lblMensagem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensagem;
     }
 }

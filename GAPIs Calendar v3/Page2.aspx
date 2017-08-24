@@ -15,7 +15,7 @@
         AutoPostBack="true" OnSelectedIndexChanged="AccountCalendarsList_OnSelectedIndexChanged">
     </asp:DropDownList>
     <br />
-    <asp:HyperLink runat=server NavigateUrl="Page1.aspx?clear=1">Sign out</asp:HyperLink>
+    <asp:HyperLink runat="server" NavigateUrl="Page1.aspx?clear=1">Sign out</asp:HyperLink>
     </form>
 </body>
 </html>

@@ -35,7 +35,7 @@ namespace GAPIs_Calendar_v3.Add_Code.GApisCalV3Integrator
                     else
                         return new UnknownException(error);
 
-                // перед авторизацией нужно обнулить
+                // Before authorization it is necessary to nullify
                 CalendarService = null;
 
                 if (code != null)
@@ -88,6 +88,30 @@ namespace GAPIs_Calendar_v3.Add_Code.GApisCalV3Integrator
             }
         }
 
+        public override Event InserirEvento(string titulo, DateTime dataInicial, DateTime dataFinal, string calendarId)
+        {
+            Event ev = CriarEvento(titulo, dataInicial, dataFinal);
+            EventsResource.InsertRequest request = CalendarService.Events.Insert(ev, calendarId);
+            return request.Execute();
+        }
+
+        private Event CriarEvento(string titulo, DateTime dataInicial, DateTime dataFinal)
+        {
+            EventDateTime dataIni = new EventDateTime();
+            dataIni.DateTime = dataInicial;
+            // (opicional) dataIni.TimeZone = "America/Fortaleza";
+
+            EventDateTime dataFim = new EventDateTime();
+            dataFim.DateTime = dataFinal;
+
+            // Definir paramentros da requisição.
+            Event ev = new Event();
+            ev.Summary = titulo;
+            ev.Start = dataIni;
+            ev.End = dataFim;
+            return ev;
+        }
+
         public override object GetCalendar(string calendarId)
         {
             try
@@ -108,7 +132,7 @@ namespace GAPIs_Calendar_v3.Add_Code.GApisCalV3Integrator
                 string pageToken = null;
                 var eventList = CalendarService.Events.List(calendarId);
 
-                // задам ограничения списка событий
+                // Limit the list of events
                 if (timeMin != null)
                     eventList.TimeMin = timeMin;
                 if (timeMax != null)

@@ -20,6 +20,8 @@
         <h1 runat="server" id="AccountNameLabel" />
         <h2 runat="server" id="CalendarDescriptionLabel" />
         <a href="javascript:history.back();">Back</a>
+        <br />
+        <asp:HyperLink runat="server" NavigateUrl="Page4InserirEvento.aspx">Inserir Evento</asp:HyperLink>
         <asp:Repeater runat="server" ID="EventsTableRepeater">
             <HeaderTemplate>
                 <div id="table-container">

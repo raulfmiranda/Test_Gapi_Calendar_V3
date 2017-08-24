@@ -53,6 +53,8 @@ namespace GAPIs_Calendar_v3.Add_Code.GApisCalV3Integrator
 
         public abstract object GetCalendarList();
 
+        public abstract Event InserirEvento(string titulo, DateTime dataInicial, DateTime dataFinal, string calendarId);
+
         public abstract object GetCalendar(string calendarId);
 
         public abstract object GetEvents(string calendarId, DateTime? timeMin = null, DateTime? timeMax = null);

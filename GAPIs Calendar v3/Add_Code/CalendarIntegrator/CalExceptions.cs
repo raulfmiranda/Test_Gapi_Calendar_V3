@@ -6,7 +6,7 @@ using System.Web;
 namespace GAPIs_Calendar_v3.Add_Code.CalendarIntegrator
 {
     /// <summary>
-    /// Неопределенная ошибка. Вызывается когда происходит непредвиденное.
+    /// Uncertain error. Called when an unexpected occurs.
     /// </summary>
     public class UnknownException : Exception
     {
@@ -16,7 +16,7 @@ namespace GAPIs_Calendar_v3.Add_Code.CalendarIntegrator
     }
 
     /// <summary>
-    /// Ошибка, которая вызывается если пользователь отверг приглашение.
+    /// An error that is thrown if the user declines the invitation.
     /// </summary>
     public class UserRejectException : Exception
     {

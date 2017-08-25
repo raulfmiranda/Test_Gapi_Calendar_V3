@@ -50,25 +50,25 @@ namespace GAPIs_Calendar_v3
                 GooCalIntegrator integra = new GooCalV3Integrator();
                 var result = integra.Authorize(Request, Session["GapiUserId"] as string);
 
-                // проверяю обработку
+                // Check processing
                 if (result is AuthorizationCodeWebApp.AuthResult)
                 {
                     var authResult = result as AuthorizationCodeWebApp.AuthResult;
-                    // нужно выполнить переход на этот url
+                    // You need to go to this url
                     Response.Redirect(authResult.RedirectUri);
                 }
                 else if (result is string && (result as string) == "OK")
                 {
-                    // все ок, пользователь авторизовался
-                    // запоминаю объект интегратора
+                    // All ok, user authorized
+                    // I remember the integrator object
                     Session["GooCalIntegrator"] = integra;
-                    // перехожу на следующую страницу
+                    // I turn to the next page
                     Response.Redirect("Page2.aspx");
                 }
                 else if (result is Task<string>)
                 {
                     //var task = result as Task<string>;
-                    // авторизация прошла, нужно сейчас просто обновить страницу и снова авторизоваться
+                    // Authorization has passed, you just need to update the page and log in again
                     Response.Redirect(Request.Url.AbsolutePath + "?action=check");
                 }
                 else if (result is UserRejectException)
